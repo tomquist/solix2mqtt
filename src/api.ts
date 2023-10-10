@@ -339,14 +339,14 @@ export class SolixApi {
     );
   }
 
-  private async fetch(endpoint: string, data: any, headers?: Record<string, string>) {
+  private async fetch(endpoint: string, data?: any, headers?: Record<string, string>) {
     this.logger.log(JSON.stringify(data));
     const urlBuilder = new URL(endpoint, "https://ankerpower-api-eu.anker.com");
     const url = urlBuilder.href;
     
     return fetch(url, {
       method: "POST",
-      body: JSON.stringify(data),
+      body: data != null ? JSON.stringify(data) : undefined,
       headers: {
         ["Content-Type"]: "application/json",
         Country: this.country,
@@ -362,19 +362,7 @@ export class SolixApi {
   public withLogin(login: LoginResultResponse) {
     const headers = { ["X-Auth-Token"]: login.auth_token, "gtoken": this.md5(login.user_id) };
     const authFetch = async <T>(endpoint: string, data?: any): Promise<ResultResponse<T>> => {
-      const response = await this.fetch(endpoint, {
-        method: "POST",
-        body: data !== undefined ? JSON.stringify(data) : undefined,
-        headers: {
-          ["Content-Type"]: "application/json",
-          Country: this.country,
-          Timezone: this.timezone,
-          ["Model-Type"]: "DESKTOP",
-          ["App-Name"]: "anker_power",
-          ["Os-Type"]: "android",
-          ...headers,
-        },
-      });
+      const response = await this.fetch(endpoint, data, headers);
       return await response.json() as ResultResponse<T>;
     };
     return {
