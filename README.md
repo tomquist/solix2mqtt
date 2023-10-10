@@ -67,7 +67,7 @@ This project is the result of some work I did to integrate my Solix into my home
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
-- [eufy-security-client](https://github.com/bropat/eufy-security-client=
+- [eufy-security-client](https://github.com/bropat/eufy-security-client)
