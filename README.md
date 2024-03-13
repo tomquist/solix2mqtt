@@ -44,8 +44,8 @@ docker run -d \
 ## Configuration
 The app can be configured using the following environment variables:
 
-- `S2M_USER` (required): A Solix API client id
-- `S2M_PASSWORD` (required): The client secret
+- `S2M_USER` (required): Email address of your Anker account
+- `S2M_PASSWORD` (required): Password of your Anker account
 - `S2M_COUNTRY` (required): A two-letter country code (e.g. `DE`)
 - `S2M_LOGIN_STORE` (optional): Path to a file where the auth tokens will be cached. (default `auth.data`)
 - `S2M_POLL_INTERVAL` (optional): The polling interval in seconds (default `60`) 
