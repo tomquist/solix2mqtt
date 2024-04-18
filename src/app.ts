@@ -43,7 +43,15 @@ async function run(): Promise<void> {
       const siteHomepage = await loggedInApi.siteHomepage();
       let topic = `${config.mqttTopic}/site_homepage`;
       await publisher.publish(topic, siteHomepage.data);
-      for (const site of siteHomepage.data?.site_list ?? []) {
+
+      let sites;
+      if (siteHomepage.data.site_list.length === 0) {
+        // Fallback for Shared Accounts
+        sites = (await loggedInApi.getSiteList()).data.site_list;
+      } else {
+        sites = siteHomepage.data.site_list;
+      }
+      for (const site of sites) {
         const scenInfo = await loggedInApi.scenInfo(site.site_id);
         topic = `${config.mqttTopic}/site/${site.site_name}/scenInfo`;
         await publisher.publish(topic, scenInfo.data);
