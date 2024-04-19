@@ -60,7 +60,9 @@ The app can be configured using the following environment variables:
 
 The App utilizes an advanced version of the auth mechanism known from Eufy. The Anker App employs a two-step authentication scheme: first, keys are exchanged, and second, the full login payload is encrypted. However, it turns out the original Eufy mechanism still works, so we're using that in this project (credits to [eufy-security-client](https://github.com/bropat/eufy-security-client) for inspiration). This might break at some point!
 
-**Note**: Anker currently permits only one simultaneous login at a time. When you log in from another device, all previously generated auth tokens become invalidated. Thus, if you're utilizing this project, you will be unable to use the app concurrently.
+For a "READ-ONLY" access to the data, an account with which the "System" has been shared can be used. By this the main account can still be used in the app to control everything and the shared account can be used for the API access.
+
+**Note**: Anker currently permits only one simultaneous login at a time. When you log in from another device, all previously generated auth tokens become invalidated.
 
 ## Disclaimer
 This project is the result of some work I did to integrate my Solix into my home automation. I no longer own an Anker Solix Solarbank due to disappointment with the product, so this project will not receive any updates. However, I'm happy to accept pull requests.
