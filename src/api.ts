@@ -101,6 +101,10 @@ interface SiteHomepageResponse {
   solarbank_list: Solarbank[],
 }
 
+interface SiteListResponse {
+  site_list: Site[]
+}
+
 export interface UserMqttInfo {
   /**
    * A unique identifier for the user.
@@ -376,6 +380,10 @@ export class SolixApi {
       siteHomepage: async () => {
         const data = {};
         return authFetch<SiteHomepageResponse>("/power_service/v1/site/get_site_homepage", data);
+      },
+      getSiteList: async () => {
+        const data = {};
+        return authFetch<SiteListResponse>("/power_service/v1/site/get_site_list", data);
       },
       getHomeLoadChart: async ({
         siteId,
